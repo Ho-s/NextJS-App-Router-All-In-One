@@ -9,10 +9,8 @@ interface Car {
 }
 
 async function getCars(): Promise<Car[]> {
-  const res = await fetch(
-    `https://647de137af984710854a86f2.mockapi.io/api/v1/cars`
-  );
-  await new Promise((resolve) => setTimeout(resolve, 4000));
+  const res = await fetch(`https://647de137af984710854a86f2.mockapi.io/api/v1/cars`);
+  await new Promise(resolve => setTimeout(resolve, 4000));
   return res.json();
 }
 
@@ -21,7 +19,7 @@ export default async function CarsPage() {
 
   return (
     <ul>
-      {cars.map((v) => (
+      {cars.map(v => (
         <li key={v.carId}>{v.carName}</li>
       ))}
     </ul>
