@@ -1,9 +1,17 @@
+'use client';
+
 import Link from 'next/link';
+
+import Button from '~/components/button';
+
+import { RootPageStyled } from './styled';
 
 export default function Home() {
   return (
-    <main>
-      <Link href={'/cars'}>Go to cars page</Link>
-    </main>
+    <RootPageStyled>
+      <Link href={'/cars'}>
+        <Button>Go to cars page</Button>
+      </Link>
+    </RootPageStyled>
   );
 }

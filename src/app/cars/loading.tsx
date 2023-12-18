@@ -1,3 +1,7 @@
+'use client';
+
+import { CartLoadingStyled } from './styled';
+
 export default function CarsLoading() {
-  return 'loading';
+  return <CartLoadingStyled>loading</CartLoadingStyled>;
 }
