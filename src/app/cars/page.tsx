@@ -1,3 +1,5 @@
+import 'server-only';
+
 interface Car {
   createdAt: string;
   driverName: string;
@@ -18,10 +20,12 @@ export default async function CarsPage() {
   const cars = await getCars();
 
   return (
-    <ul>
-      {cars.map(v => (
-        <li key={v.carId}>{v.carName}</li>
-      ))}
-    </ul>
+    <main>
+      <ul>
+        {cars.map(v => (
+          <li key={v.carId}>{v.carName}</li>
+        ))}
+      </ul>
+    </main>
   );
 }

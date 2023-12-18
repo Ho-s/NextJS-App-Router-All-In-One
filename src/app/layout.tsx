@@ -1,6 +1,11 @@
 import type { Metadata } from 'next';
 import { Noto_Sans } from 'next/font/google';
 
+/*
+ * Keeping Server-only Code out of the Client Environment
+ *  https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#keeping-server-only-code-out-of-the-client-environment
+ */
+import 'server-only';
 import CustomThemeProvider from '~/providers/customThemeProvider';
 
 const notoSans = Noto_Sans({

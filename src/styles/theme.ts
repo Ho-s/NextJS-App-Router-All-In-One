@@ -22,9 +22,10 @@ export const colors = {
 
 export const sizes = {
   maxPcWidth: '1280px',
-  maxMobileWidth: '375px',
-  navHeight: '96px',
-  mobileHeaderHeight: '52px',
+  navHeight: '52px',
+  headerHeight: '96',
+  asideWidth: '50px',
+  footerHeight: '50px',
 } as const;
 
 export const theme: DefaultTheme = {
