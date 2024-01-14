@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "pretty": "yarn prettier 'src/**/*.{ts,js,tsx,jsx}' --write"
+    "pretty": "yarn prettier 'src/**/*.{ts,js,tsx,jsx}' --write",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "next": "14.0.4",
@@ -16,6 +18,14 @@
     "styled-components": "^6.1.1"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.8",
+    "@storybook/addon-interactions": "^7.6.8",
+    "@storybook/addon-links": "^7.6.8",
+    "@storybook/addon-onboarding": "^1.0.10",
+    "@storybook/blocks": "^7.6.8",
+    "@storybook/nextjs": "^7.6.8",
+    "@storybook/react": "^7.6.8",
+    "@storybook/test": "^7.6.8",
     "@swc/plugin-styled-components": "^1.5.105",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/node": "^20",
@@ -24,7 +34,9 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-storybook": "^0.6.15",
     "prettier": "^3.1.1",
+    "storybook": "^7.6.8",
     "typescript": "^5"
   }
 }
