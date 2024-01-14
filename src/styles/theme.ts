@@ -1,3 +1,5 @@
+import { Noto_Sans } from 'next/font/google';
+
 import { DefaultTheme } from 'styled-components';
 
 export const colors = {
@@ -32,3 +34,11 @@ export const theme: DefaultTheme = {
   colors,
   sizes,
 };
+
+export const notoSans = Noto_Sans({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  preload: true,
+  adjustFontFallback: true,
+  display: 'swap',
+});
