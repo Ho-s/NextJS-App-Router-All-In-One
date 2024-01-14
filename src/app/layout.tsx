@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Noto_Sans } from 'next/font/google';
 
 /*
  * Keeping Server-only Code out of the Client Environment
@@ -7,14 +6,7 @@ import { Noto_Sans } from 'next/font/google';
  */
 import 'server-only';
 import CustomThemeProvider from '~/providers/customThemeProvider';
-
-const notoSans = Noto_Sans({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  preload: true,
-  adjustFontFallback: true,
-  display: 'swap',
-});
+import { notoSans } from '~/styles/theme';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
