@@ -5,7 +5,8 @@ import type { Metadata } from 'next';
  *  https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#keeping-server-only-code-out-of-the-client-environment
  */
 import 'server-only';
-import CustomThemeProvider from '~/providers/customThemeProvider';
+
+import CustomThemeProvider from '~/providers/CustomThemeProvider';
 import { notoSans } from '~/styles/theme';
 
 export const metadata: Metadata = {

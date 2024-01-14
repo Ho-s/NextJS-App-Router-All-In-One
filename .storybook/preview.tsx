@@ -1,10 +1,7 @@
 import type { Decorator, Preview } from '@storybook/react';
 import React from 'react';
 
-import { ThemeProvider } from 'styled-components';
-
-import { InitGlobalStyled } from '../src/styles/init';
-import { notoSans, theme } from '../src/styles/theme';
+import { CustomWrapper } from '../src/libs/CustomWrapper';
 
 const preview: Preview = {
   parameters: {
@@ -18,15 +15,6 @@ const preview: Preview = {
   },
 };
 
-export const decorators: Decorator[] = [
-  Story => (
-    <div className={notoSans.className}>
-      <ThemeProvider theme={theme}>
-        <InitGlobalStyled />
-        <Story />
-      </ThemeProvider>
-    </div>
-  ),
-];
+export const decorators: Decorator[] = [Story => CustomWrapper({ children: <Story /> })];
 
 export default preview;
