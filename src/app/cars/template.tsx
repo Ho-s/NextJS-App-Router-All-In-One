@@ -2,8 +2,8 @@
 
 import { ReactNode } from 'react';
 
-import { CartTemplateStyled } from './styled';
+import { CarsTemplateStyled } from './styled';
 
 export default function CarsTemplate({ children }: { children: ReactNode }) {
-  return <CartTemplateStyled>{children}</CartTemplateStyled>;
+  return <CarsTemplateStyled>{children}</CarsTemplateStyled>;
 }

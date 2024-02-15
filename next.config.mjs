@@ -4,6 +4,14 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cloudflare-ipfs.com',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
