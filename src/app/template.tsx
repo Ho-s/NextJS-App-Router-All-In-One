@@ -10,7 +10,7 @@ export default function RootTemplate({ children }: { children: ReactNode }) {
       <header>HEADER</header>
       <nav>NAV</nav>
       <aside>ASIDE</aside>
-      {children}
+      <main>{children}</main>
       <footer>FOOTER</footer>
     </RootTemplateStyled>
   );
