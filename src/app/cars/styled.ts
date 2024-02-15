@@ -6,4 +6,10 @@ export const CarsLoadingStyled = styled.div`
   color: ${props => props.theme.colors.primaryTextColor};
 `;
 
-export const CartTemplateStyled = styled.div``;
+export const CartTemplateStyled = styled.div`
+  .cars-root-page {
+    li {
+      font-size: 20px;
+    }
+  }
+`;
