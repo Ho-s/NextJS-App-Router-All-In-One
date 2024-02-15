@@ -20,12 +20,12 @@ export default async function CarsPage() {
   const cars = await getCars();
 
   return (
-    <main>
+    <div className="cars-root-page">
       <ul>
         {cars.map(v => (
           <li key={v.carId}>{v.carName}</li>
         ))}
       </ul>
-    </main>
+    </div>
   );
 }
