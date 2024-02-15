@@ -11,7 +11,8 @@ interface Car {
 }
 
 async function getCars(): Promise<Car[]> {
-  const res = await fetch(`https://647de137af984710854a86f2.mockapi.io/api/v1/cars`);
+  // You need to set base url in .env as origin of your url
+  const res = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/cars');
   await new Promise(resolve => setTimeout(resolve, 4000));
   return res.json();
 }
