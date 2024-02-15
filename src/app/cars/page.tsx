@@ -1,6 +1,8 @@
+import Link from 'next/link';
+
 import 'server-only';
 
-interface Car {
+export interface Car {
   createdAt: string;
   driverName: string;
   driverAvatar: string;
@@ -24,7 +26,9 @@ export default async function CarsPage() {
     <div className="cars-root-page">
       <ul>
         {cars.map(v => (
-          <li key={v.carId}>{v.carName}</li>
+          <li key={v.carId}>
+            <Link href={`/cars/${v.carId}`}>{v.carName}</Link>
+          </li>
         ))}
       </ul>
     </div>
