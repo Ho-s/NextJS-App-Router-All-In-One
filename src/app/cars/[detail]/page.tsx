@@ -1,10 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { API_HOST } from '~/constants/apiRelated';
+
 import { Car } from '../page';
 
 async function getCarDetail(detail: string): Promise<Car> {
-  const res = await fetch(process.env.NEXT_PUBLIC_BASE_URL + `/api/cars/${detail}`);
+  const res = await fetch(API_HOST + `/api/cars/${detail}`);
   return res.json();
 }
 

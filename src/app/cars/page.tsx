@@ -2,6 +2,8 @@ import Link from 'next/link';
 
 import 'server-only';
 
+import { API_HOST } from '~/constants/apiRelated';
+
 export interface Car {
   createdAt: string;
   driverName: string;
@@ -14,7 +16,7 @@ export interface Car {
 
 async function getCars(): Promise<Car[]> {
   // You need to set base url in .env as origin of your url
-  const res = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/cars');
+  const res = await fetch(API_HOST + '/api/cars');
   await new Promise(resolve => setTimeout(resolve, 4000));
   return res.json();
 }
