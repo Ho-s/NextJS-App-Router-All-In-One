@@ -6,7 +6,7 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "scripts": {
-    "postinstall": "husky install",
+    "postinstall": "husky",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
