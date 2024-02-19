@@ -4,6 +4,8 @@ import 'server-only';
 
 import { API_HOST } from '~/constants/apiRelated';
 
+export const dynamic = 'force-dynamic';
+
 export interface Car {
   createdAt: string;
   driverName: string;

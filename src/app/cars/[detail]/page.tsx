@@ -5,6 +5,8 @@ import { API_HOST } from '~/constants/apiRelated';
 
 import { Car } from '../page';
 
+export const dynamic = 'force-dynamic';
+
 async function getCarDetail(detail: string): Promise<Car> {
   const res = await fetch(API_HOST + `/api/cars/${detail}`);
   return res.json();
