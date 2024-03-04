@@ -1,10 +1,10 @@
-import type { Metadata } from 'next';
-
 /*
  * Keeping Server-only Code out of the Client Environment
  *  https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#keeping-server-only-code-out-of-the-client-environment
  */
 import 'server-only';
+
+import type { Metadata } from 'next';
 
 import CustomThemeProvider from '~/providers/CustomThemeProvider';
 import { notoSans } from '~/styles/theme';

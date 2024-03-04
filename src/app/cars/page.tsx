@@ -1,6 +1,6 @@
-import Link from 'next/link';
-
 import 'server-only';
+
+import Link from 'next/link';
 
 import { API_HOST } from '~/constants/apiRelated';
 
