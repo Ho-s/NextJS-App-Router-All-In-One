@@ -16,6 +16,7 @@ Plan to write...
 - [x] Set folder structure
 - [x] Jest
 - [x] Storybook
+- [x] Generator
 - [ ] Custom suspense
 
 ...

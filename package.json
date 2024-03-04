@@ -14,7 +14,8 @@
     "pretty": "yarn prettier 'src/**/*.{ts,js,tsx,jsx}' --write",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "jest"
+    "test": "jest",
+    "g": "plop --plopfile ./generator/plopfile.mjs"
   },
   "dependencies": {
     "next": "14.0.4",
@@ -48,6 +49,7 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-styled-components": "^7.2.0",
+    "ora": "^8.0.1",
     "plop": "^4.0.1",
     "prettier": "^3.1.1",
     "storybook": "^7.6.8",

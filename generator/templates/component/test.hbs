@@ -1,0 +1,20 @@
+import { composeStory } from '@storybook/react';
+import { cleanup } from '@testing-library/react';
+
+import { afterAll, describe } from '@jest/globals';
+
+import meta, { Primary } from './{{pascalCase componentName}}.stories';
+
+import { customRender } from '~/libs/customRender';
+
+const PrimaryTest = composeStory(Primary, meta);
+
+afterAll(() => {
+  cleanup();
+});
+
+describe('{{pascalCase componentName}} Test', () => {
+  const mount = customRender(<PrimaryTest />);
+
+  it('Do {{pascalCase componentName}} test', () => {});
+});
