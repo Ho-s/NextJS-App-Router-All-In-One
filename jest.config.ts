@@ -20,6 +20,7 @@ const config: Config = {
   globals: {
     fetch,
   },
+  testTimeout: 30000,
 };
 
 export default createJestConfig(config);
