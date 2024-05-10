@@ -17,6 +17,9 @@ const config: Config = {
     '^.+\\.(ts|tsx)?$': 'ts-jest',
   },
   passWithNoTests: true,
+  globals: {
+    fetch,
+  },
 };
 
 export default createJestConfig(config);

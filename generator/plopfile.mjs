@@ -1,15 +1,17 @@
 import { exec } from 'child_process';
+import fs from 'fs';
 import ora from 'ora';
 import util from 'util';
 
-const pretty = async () => {
+const prettify = async () => {
   const spinner = ora('🚀  Code formatting...It will take about 10seconds').start();
   const promisedExec = util.promisify(exec);
   await promisedExec('yarn pretty');
   spinner.succeed('🎉  Done!');
 };
 
-export const pascalCasify = param => `{{pascalCase ${param}}}`;
+const pascalCasify = param => `{{pascalCase ${param}}}`;
+const toCamelCase = str => str.replace(/(\/\w)/g, k => k[1].toUpperCase());
 
 const ASSET_TYPE = 'assetType';
 
@@ -21,14 +23,57 @@ const COMPONENT = 'component';
 const COMPONENT_NAME = 'componentName';
 const COMPONENT_TYPE = 'componentType';
 
+const API = 'api';
+
 const TEST_EXIST = 'testExist';
 
 const RENDERING_TYPE = 'renderingType';
 
 const __dirname = new URL('../', import.meta.url).pathname;
-const rootPath = __dirname + '/src';
+const rootPath = __dirname + 'src';
 
-const pageActions = data => [];
+const pageActions = data => {
+  const pagePathInput = String(data[PAGE_PATH].replace(/\.tsx?/, '')).toLowerCase();
+
+  const pagePath = `${rootPath + '/app'}/${pagePathInput}`;
+
+  const name = toCamelCase(pagePathInput);
+
+  const styledPath = pagePath + '/styled.ts';
+  const styledExist = fs.existsSync(styledPath);
+
+  return [
+    {
+      type: 'add',
+      path: pagePath + `/${data[PAGE_TYPE]}.tsx`,
+      templateFile: 'templates/page/page.hbs',
+      data: {
+        name,
+      },
+    },
+    ...[
+      styledExist
+        ? {
+            type: 'append',
+            path: styledPath,
+            pattern: /[;]/,
+            separator: '\n',
+            templateFile: 'templates/page/styled-append.hbs',
+            data: {
+              name,
+            },
+          }
+        : {
+            type: 'add',
+            path: styledPath,
+            templateFile: 'templates/page/styled.hbs',
+            data: {
+              name,
+            },
+          },
+    ],
+  ];
+};
 
 const componentActions = data => [
   {
@@ -66,6 +111,7 @@ const componentActions = data => [
 
 export default function generator(plop) {
   plop.addHelper('is', (v1, v2) => v1 === v2);
+  plop.addHelper('notIs', (v1, v2) => v1 !== v2);
   plop.setGenerator('react-asset-generator', {
     description: 'Adds a new react assets',
     prompts: [
@@ -73,7 +119,7 @@ export default function generator(plop) {
         type: 'list',
         name: ASSET_TYPE,
         message: 'Asset type',
-        choices: [PAGE, COMPONENT],
+        choices: [PAGE, COMPONENT, API],
       },
       {
         type: 'list',
@@ -122,7 +168,7 @@ export default function generator(plop) {
     ],
     actions: data => [
       ...(data[ASSET_TYPE] === COMPONENT ? componentActions(data) : pageActions(data)),
-      () => pretty(),
+      () => prettify(),
     ],
   });
 }
