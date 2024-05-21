@@ -117,6 +117,7 @@ const componentActions = data => [
     type: 'add',
     path: `${rootPath}/components/{{${COMPONENT_TYPE}}}/${pascalCasify(COMPONENT_NAME)}/styled.ts`,
     templateFile: 'templates/component/styled.hbs',
+    ...(data[RENDERING_TYPE] === 'SSR(Server-Side-Rendering)' && { skip: () => 'skipped' }),
   },
   {
     type: 'add',

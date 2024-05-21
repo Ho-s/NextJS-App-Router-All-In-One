@@ -4,7 +4,17 @@ import {{pascalCase componentName}} from '.';
 
 const meta = {
   title: '{{pascalCase componentType}}/{{pascalCase componentName}}',
+{{#if (is "CSR(Client-Side-Rendering)" renderingType)}}
   component: {{pascalCase componentName}},
+{{/if}}
+
+{{#if (is "SSR(Server-Side-Rendering)" renderingType)}}
+loaders: [async ({ args }) => ({ Component: await {{pascalCase componentName}}({ ...args }) })],
+render: (_, { loaded: { Component } }) => {
+    return Component;
+  },
+{{/if}}
+
   parameters: {
     layout: 'centered',
   },

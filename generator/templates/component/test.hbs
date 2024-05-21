@@ -1,20 +1,30 @@
-import { composeStory } from '@storybook/react';
+import { composeStories } from '@storybook/react';
 import { cleanup } from '@testing-library/react';
 
 import { afterAll, describe } from '@jest/globals';
 
-import meta, { Primary } from './{{pascalCase componentName}}.stories';
+import * as stories from './{{componentName}}.stories';
 
 import { customRender } from '~/libs/customRender';
+const { Primary: PrimaryTest } = composeStories(stories);
 
-const PrimaryTest = composeStory(Primary, meta);
 
 afterAll(() => {
   cleanup();
 });
 
 describe('{{pascalCase componentName}} Test', () => {
-  const mount = customRender(<PrimaryTest />);
+{{#if (is "CSR(Client-Side-Rendering)" renderingType)}}
+  it('Do {{pascalCase componentName}} test', () => {
+    customRender(<PrimaryTest />);
+  });
+{{/if}}
 
-  it('Do {{pascalCase componentName}} test', () => {});
+{{#if (is "SSR(Server-Side-Rendering)" renderingType)}}
+  it('Do {{pascalCase componentName}} test', async() => {
+    await PrimaryTest.load();
+
+    customRender(<PrimaryTest />);
+  });
+{{/if}}
 });

@@ -1,25 +1,45 @@
 {{#if (is "CSR(Client-Side-Rendering)" renderingType)}}
 'use client';
+import { {{pascalCase componentName}}{{pageType}}Styled } from './styled';
 {{/if}}
+
 {{#if (is "SSR(Server-Side-Rendering)" renderingType)}}
 import 'server-only';
 {{/if}}
 
 import { ReactNode } from 'react';
 
-import { {{pascalCase componentName}}Styled } from './styled'
-
 interface {{pascalCase componentName}}Props {
   children?: ReactNode
 }
 
-const {{ pascalCase componentName }} = ({ children }: {{pascalCase componentName}}Props) => {
+const {{ pascalCase componentName }} = 
+{{#if (is "CSR(Client-Side-Rendering)" renderingType)}}
+({ children }: {{pascalCase componentName}}Props) => {
+{{/if}}
+  
+{{#if (is "SSR(Server-Side-Rendering)" renderingType)}}
+async ({ children }: {{pascalCase componentName}}Props) => {
+{{/if}}
+  
+{{#if (is "CSR(Client-Side-Rendering)" renderingType)}}
   return (
     <{{ pascalCase componentName }}Styled>
       <h2>{{ pascalCase componentName }} Component</h2>
       {children}
     </{{ pascalCase componentName }}Styled>
   );
+{{/if}}
+
+{{#if (is "SSR(Server-Side-Rendering)" renderingType)}}
+  return (
+    <>
+      <h2>{{ pascalCase componentName }} Component</h2>
+      {children}
+    </>
+  );
+{{/if}}
+
 };
 
 export default {{ pascalCase componentName }}
