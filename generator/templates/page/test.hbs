@@ -1,0 +1,28 @@
+import { composeStories } from '@storybook/react';
+import { cleanup } from '@testing-library/react';
+import { afterAll, describe } from '@jest/globals';
+import { customRender } from '~/libs/customRender';
+import * as stories from './{{pageType}}.stories';
+
+const { Primary: PrimaryTest } = composeStories(stories);
+
+afterAll(() => {
+  cleanup();
+});
+
+describe('{{pascalCase name}} Test', () => {
+
+{{#if (is "CSR(Client-Side-Rendering)" renderingType)}}
+  it('Do {{pascalCase name}} test', () => {
+    customRender(<PrimaryTest />);
+  });
+{{/if}}
+
+{{#if (is "SSR(Server-Side-Rendering)" renderingType)}}
+  it('Do {{pascalCase name}} test', async() => {
+    await PrimaryTest.load();
+
+    customRender(<PrimaryTest />);
+  });
+{{/if}}
+});

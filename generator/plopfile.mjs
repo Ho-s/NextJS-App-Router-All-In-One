@@ -42,11 +42,36 @@ const pageActions = data => {
   const styledPath = pagePath + '/styled.ts';
   const styledExist = fs.existsSync(styledPath);
 
+  const isServerComponent = data[RENDERING_TYPE] === 'SSR(Server-Side-Rendering)';
+
   return [
     {
       type: 'add',
       path: pagePath + `/${data[PAGE_TYPE]}.tsx`,
+
       templateFile: 'templates/page/page.hbs',
+      data: {
+        name,
+      },
+    },
+    {
+      type: 'add',
+      path: pagePath + `/${data[PAGE_TYPE]}.test.tsx`,
+      templateFile: 'templates/page/test.hbs',
+      ...(!data[TEST_EXIST] && {
+        skip: () => 'skipped',
+      }),
+      data: {
+        name,
+      },
+    },
+    {
+      type: 'add',
+      path: pagePath + `/${data[PAGE_TYPE]}.stories.ts`,
+      templateFile: 'templates/page/stories.hbs',
+      ...(!data[TEST_EXIST] && {
+        skip: () => 'skipped',
+      }),
       data: {
         name,
       },
@@ -62,6 +87,7 @@ const pageActions = data => {
             data: {
               name,
             },
+            ...(isServerComponent && { skip: () => 'skipped' }),
           }
         : {
             type: 'add',
@@ -70,6 +96,7 @@ const pageActions = data => {
             data: {
               name,
             },
+            ...(isServerComponent && { skip: () => 'skipped' }),
           },
     ],
   ];
