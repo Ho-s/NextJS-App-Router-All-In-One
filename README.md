@@ -14,8 +14,8 @@ Plan to write...
 
 - [x] CI
 - [x] Set folder structure
-- [x] Jest
-- [x] Storybook
+- [x] Jest(with server component)
+- [x] Storybook(with server component)
 - [x] Generator
 - [ ] Custom suspense
 
