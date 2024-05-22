@@ -1,7 +1,8 @@
+import 'server-only';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
-import 'server-only';
 import notFoundImage from '~/assets/images/not-found.png';
 
 export default function NotFound() {

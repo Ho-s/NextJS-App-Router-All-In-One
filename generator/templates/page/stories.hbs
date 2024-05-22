@@ -1,0 +1,36 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
+import {{pascalCase name}}{{pageType}} from './{{pageType}}';
+
+const meta = {
+  title: '{{pagePath}}/{{pageType}}',
+{{#if (is "SSR(Server-Side-Rendering)" renderingType)}}
+{{#if (notIs "page" pageType)}}
+  loaders: [async ({ args }) => ({ Component: await {{pascalCase name}}{{pageType}}({ ...args }) })],
+
+{{/if}}
+{{#if (is "page" pageType)}}
+  loaders: [async () => ({ Component: await {{pascalCase name}}{{pageType}}() })],
+{{/if}}
+
+
+  render: (_, { loaded: { Component } }) => {
+    return Component;
+  },
+{{/if}}
+{{#if (is "CSR(Client-Side-Rendering)" renderingType)}}
+  component: {{pascalCase name}}{{pageType}},
+{{/if}}
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+  argTypes: {},
+} satisfies Meta<typeof {{pascalCase name}}{{pageType}}>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Primary: Story = { };
+
+export const Secondary: Story = { };

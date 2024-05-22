@@ -1,6 +1,6 @@
-import Link from 'next/link';
-
 import 'server-only';
+
+import Link from 'next/link';
 
 import { API_HOST } from '~/constants/apiRelated';
 
@@ -23,7 +23,8 @@ async function getCars(): Promise<Car[]> {
   return res.json();
 }
 
-export default async function CarsPage() {
+export default async function CarsPage(...props: any) {
+  console.log(props);
   const cars = await getCars();
 
   return (

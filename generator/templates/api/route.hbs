@@ -1,0 +1,62 @@
+const mockApiHost = 'https://65e995bdc9bf92ae3d398f04.mockapi.io/mock/';
+
+{{#if (isIn 'GET' apiList)}}
+export async function GET() {
+  const res = await fetch(mockApiHost, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  const data = await res.json();
+
+  return Response.json(data);
+}
+{{/if}}
+
+{{#if (isIn 'POST' apiList)}}
+export async function POST(request: Request) {
+  const body = await request.json();
+
+    const res = await fetch(mockApiHost, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+
+    const data = await res.json();
+
+    return Response.json(data);
+
+}
+{{/if}}
+
+{{#if (isIn 'PUT' apiList)}}
+export async function PUT(request: Request) {
+  const body = await request.json();
+
+  const res = await fetch(mockApiHost + body.id, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+
+  const data = await res.json();
+
+  return Response.json(data);
+}
+{{/if}}
+
+{{#if (isIn 'DELETE' apiList)}}
+export async function DELETE(request: Request) {
+  const body = await request.json();
+
+  const res = await fetch(mockApiHost + body.id, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  const data = await res.json();
+
+  return Response.json(data);
+}
+{{/if}}

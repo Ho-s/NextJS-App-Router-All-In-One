@@ -1,0 +1,57 @@
+{{#if (is "CSR(Client-Side-Rendering)" renderingType)}}
+'use client';
+
+import { {{pascalCase name}}{{pageType}}Styled } from './styled';
+{{/if}}
+{{#if (is "SSR(Server-Side-Rendering)" renderingType)}}
+import 'server-only';
+{{/if}}
+
+
+{{#if (notIs "page" pageType)}}
+import { ReactNode } from 'react';
+
+interface {{pascalCase name}}Props {
+  children?: ReactNode
+}
+
+const {{pascalCase name}}{{pageType}} = 
+{{#if (is "CSR(Client-Side-Rendering)" renderingType)}}
+({ children }: {{pascalCase name}}Props) => {
+{{/if}}
+{{#if (is "SSR(Server-Side-Rendering)" renderingType)}}
+async ({ children }: {{pascalCase name}}Props) => {
+{{/if}}
+
+
+{{/if}}
+{{#if (is "page" pageType)}}
+const {{pascalCase name}}{{pageType}} = 
+{{#if (is "CSR(Client-Side-Rendering)" renderingType)}}
+() => {
+{{/if}}
+{{#if (is "SSR(Server-Side-Rendering)" renderingType)}}
+async() => {
+{{/if}}
+
+{{/if}}
+  return (
+{{#if (is "CSR(Client-Side-Rendering)" renderingType)}}
+    <{{pascalCase name}}{{pageType}}Styled>
+      {{#if (notIs "page" pageType)}}
+      {children}
+      {{/if}}
+    </{{pascalCase name}}{{pageType}}Styled>
+{{/if}}
+{{#if (is "SSR(Server-Side-Rendering)" renderingType)}}
+    <>
+      {{#if (notIs "page" pageType)}}
+      {children}
+      {{/if}}
+    </>
+{{/if}}
+
+  )
+}
+
+export default {{pascalCase name}}{{pageType}}
