@@ -1,0 +1,73 @@
+/**
+ * @jest-environment node
+ */
+
+import {
+{{apiList}}
+} from './route';
+
+describe('api/{{pagePath}} test', () => {
+{{#if (isIn 'GET' apiList)}}
+  it('GET', async () => {
+    const response = await GET();
+    const json = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(typeof json).toBe('object');
+  });
+
+{{/if}}
+{{#if (isIn 'POST' apiList)}}
+  let createdId: string;
+  it('POST', async () => {
+        const title = 'sth';
+    const requestObj = {
+      json: async () => ({
+        title,
+      }),
+    };
+
+    const response = await POST(requestObj as Request);
+    const json: { id: string; title: string } = await response?.json();
+    createdId = json.id;
+
+    expect(response?.status).toBe(200);
+    expect(json).toHaveProperty('title', title);
+  });
+
+{{/if}}
+{{#if (isIn 'PUT' apiList)}}
+  it('PUT', async () => {
+     const obj = {
+      title: 'changed',
+      id: createdId,
+    };
+    const requestObj = {
+      json: async () => obj,
+    };
+
+    const response = await PUT(requestObj as Request);
+    const json: { id: string; title: string } = await response?.json();
+
+    expect(response?.status).toBe(200);
+    expect(json).toEqual(obj);
+  });
+
+{{/if}}
+{{#if (isIn 'DELETE' apiList)}}
+  it('DELETE', async () => {
+        const requiestObj = {
+      json: async () => ({ id: createdId }),
+    };
+
+    const response = await DELETE(requiestObj as Request);
+    const json: { id: string; title: string } = await response?.json();
+
+    expect(response?.status).toBe(200);
+    expect(json).toHaveProperty('id', createdId);
+  });
+
+{{/if}}
+
+})
+ 

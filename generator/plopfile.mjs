@@ -22,6 +22,7 @@ const PAGE_PATH = 'pagePath';
 const COMPONENT = 'component';
 const COMPONENT_NAME = 'componentName';
 const COMPONENT_TYPE = 'componentType';
+const API_LIST = 'apiList';
 
 const API = 'api';
 
@@ -137,8 +138,31 @@ const componentActions = data => [
   },
 ];
 
+const apiActions = data => {
+  const pagePathInput = String(data[PAGE_PATH].replace(/\.tsx?/, '')).toLowerCase();
+
+  const pagePath = `${rootPath + '/app/api'}/${pagePathInput}`;
+
+  return [
+    {
+      type: 'add',
+      path: pagePath + `/route.ts`,
+      templateFile: 'templates/api/route.hbs',
+    },
+    {
+      type: 'add',
+      path: pagePath + `/route.test.ts`,
+      templateFile: 'templates/api/test.hbs',
+      ...(!data[TEST_EXIST] && {
+        skip: () => 'skipped',
+      }),
+    },
+  ];
+};
+
 export default function generator(plop) {
   plop.addHelper('is', (v1, v2) => v1 === v2);
+  plop.addHelper('isIn', (v1, v2) => v2.includes(v1));
   plop.addHelper('notIs', (v1, v2) => v1 !== v2);
   plop.setGenerator('react-asset-generator', {
     description: 'Adds a new react assets',
@@ -175,8 +199,9 @@ export default function generator(plop) {
       {
         type: 'input',
         name: PAGE_PATH,
-        message: data => `Page path (ex:sign/in = sign/in/${data[PAGE_TYPE]}.tsx)`,
-        when: answer => answer[ASSET_TYPE] === PAGE,
+        message: data =>
+          `Page path (ex:sign/in = sign/in/${data[ASSET_TYPE] === PAGE ? data[PAGE_TYPE] + '.tsx' : 'route.ts'})`,
+        when: answer => answer[ASSET_TYPE] !== COMPONENT,
         validate: input => {
           return String(input).trim().length > 0 || `🚫 path is required`;
         },
@@ -184,8 +209,17 @@ export default function generator(plop) {
       {
         type: 'list',
         name: RENDERING_TYPE,
+        when: answer => answer[ASSET_TYPE] !== API,
         message: 'Rendering type',
         choices: ['SSR(Server-Side-Rendering)', 'CSR(Client-Side-Rendering)'],
+      },
+      {
+        type: 'checkbox',
+        name: API_LIST,
+        when: answer => answer[ASSET_TYPE] === API,
+        message: 'Please select a apis to incluede.',
+        choices: ['GET', 'POST', 'PUT', 'DELETE'],
+        default: ['GET', 'POST', 'PUT', 'DELETE'],
       },
       {
         type: 'confirm',
@@ -195,7 +229,11 @@ export default function generator(plop) {
       },
     ],
     actions: data => [
-      ...(data[ASSET_TYPE] === COMPONENT ? componentActions(data) : pageActions(data)),
+      ...(data[ASSET_TYPE] === COMPONENT
+        ? componentActions(data)
+        : data[ASSET_TYPE] === PAGE
+          ? pageActions(data)
+          : apiActions(data)),
       () => prettify(),
     ],
   });
