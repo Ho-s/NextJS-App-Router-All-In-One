@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import type { RenderOptions } from '@testing-library/react';
+import { JSX } from 'react';
 
 import 'jest-styled-components';
 
