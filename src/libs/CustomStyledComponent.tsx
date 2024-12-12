@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { JSX, useState } from 'react';
 
 import { useServerInsertedHTML } from 'next/navigation';
 

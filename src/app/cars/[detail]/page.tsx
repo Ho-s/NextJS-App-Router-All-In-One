@@ -12,11 +12,8 @@ async function getCarDetail(detail: string): Promise<Car> {
   return res.json();
 }
 
-export default async function CarsDetailPage({
-  params: { detail },
-}: {
-  params: { detail: string };
-}) {
+export default async function CarsDetailPage({ params }: { params: Promise<{ detail: string }> }) {
+  const { detail } = await params;
   const car = await getCarDetail(detail);
 
   return (

@@ -1,10 +1,10 @@
 # NextJS-App-Router-All-In-One
 
-`Next14 + App router` boilerplate
+`Next15 + App router` boilerplate
 
 ## How to use
 
-- Framework: [`NextJS14`](https://nextjs.org/)(Using [`App Router`](https://nextjs.org/docs/app))
+- Framework: [`NextJS15`](https://nextjs.org/)(Using [`App Router`](https://nextjs.org/docs/app))
 - Compiler: [`SWC`](https://swc.rs/)
 - Styling: [`styled-component`](https://styled-components.com/)
 - Testing tool: [`Jest`](https://jestjs.io/) + [`React Testing Library`](https://testing-library.com/docs/react-testing-library/intro/)
