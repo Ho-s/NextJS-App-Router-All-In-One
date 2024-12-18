@@ -21,7 +21,6 @@ const PAGE_PATH = 'pagePath';
 
 const COMPONENT = 'component';
 const COMPONENT_NAME = 'componentName';
-const COMPONENT_TYPE = 'componentType';
 const API_LIST = 'apiList';
 
 const API = 'api';
@@ -106,23 +105,23 @@ const pageActions = data => {
 const componentActions = data => [
   {
     type: 'add',
-    path: `${rootPath}/components/{{${COMPONENT_TYPE}}}/${pascalCasify(COMPONENT_NAME)}/${pascalCasify(COMPONENT_NAME)}.tsx`,
+    path: `${rootPath}/components/${pascalCasify(COMPONENT_NAME)}/${pascalCasify(COMPONENT_NAME)}.tsx`,
     templateFile: 'templates/component/component.hbs',
   },
   {
     type: 'add',
-    path: `${rootPath}/components/{{${COMPONENT_TYPE}}}/${pascalCasify(COMPONENT_NAME)}/index.ts`,
+    path: `${rootPath}/components/${pascalCasify(COMPONENT_NAME)}/index.ts`,
     templateFile: 'templates/component/index.hbs',
   },
   {
     type: 'add',
-    path: `${rootPath}/components/{{${COMPONENT_TYPE}}}/${pascalCasify(COMPONENT_NAME)}/styled.ts`,
+    path: `${rootPath}/components/${pascalCasify(COMPONENT_NAME)}/styled.ts`,
     templateFile: 'templates/component/styled.hbs',
     ...(data[RENDERING_TYPE] === 'SSR(Server-Side-Rendering)' && { skip: () => 'skipped' }),
   },
   {
     type: 'add',
-    path: `${rootPath}/components/{{${COMPONENT_TYPE}}}/${pascalCasify(COMPONENT_NAME)}/${pascalCasify(COMPONENT_NAME)}.stories.ts`,
+    path: `${rootPath}/components/${pascalCasify(COMPONENT_NAME)}/${pascalCasify(COMPONENT_NAME)}.stories.ts`,
     templateFile: 'templates/component/stories.hbs',
     ...(!data[TEST_EXIST] && {
       skip: () => 'skipped',
@@ -130,7 +129,7 @@ const componentActions = data => [
   },
   {
     type: 'add',
-    path: `${rootPath}/components/{{${COMPONENT_TYPE}}}/${pascalCasify(COMPONENT_NAME)}/${pascalCasify(COMPONENT_NAME)}.test.tsx`,
+    path: `${rootPath}/components/${pascalCasify(COMPONENT_NAME)}/${pascalCasify(COMPONENT_NAME)}.test.tsx`,
     templateFile: 'templates/component/test.hbs',
     ...(!data[TEST_EXIST] && {
       skip: () => 'skipped',
@@ -172,13 +171,6 @@ export default function generator(plop) {
         name: ASSET_TYPE,
         message: 'Asset type',
         choices: [PAGE, COMPONENT, API],
-      },
-      {
-        type: 'list',
-        name: COMPONENT_TYPE,
-        when: answer => answer[ASSET_TYPE] === COMPONENT,
-        message: 'Component type',
-        choices: ['atoms', 'molecules', 'organisms', 'templates'],
       },
       {
         type: 'input',
