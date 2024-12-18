@@ -18,7 +18,9 @@ export const metadata: Metadata = {
   },
   description: 'NextJS + AppROuter',
   other: {
-    'naver-site-verification': process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION,
+    ...(process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION && {
+      'naver-site-verification': process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION,
+    }),
   },
 };
 
