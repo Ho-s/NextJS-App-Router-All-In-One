@@ -15,6 +15,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "jest",
+    "test:unit": "jest --testPathPattern='src/app/api/.*\\.test\\.tsx?$|src/components/.*\\.test\\.tsx?$'",
+    "test:integration": "jest --testPathPattern='src/app/(?!api).*\\.test\\.tsx?$'",
     "g": "plop --plopfile ./generator/plopfile.mjs",
     "e2e": "start-server-and-test dev http://localhost:3000 \"cypress open --e2e\"",
     "e2e:headless": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\""
