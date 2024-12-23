@@ -6,6 +6,7 @@ import 'server-only';
 
 import type { Metadata } from 'next';
 
+import { CustomApolloProvider } from '~/providers/CustomApolloProvider';
 import CustomThemeProvider from '~/providers/CustomThemeProvider';
 import { notoSans } from '~/styles/theme';
 
@@ -28,7 +29,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ko">
       <body className={notoSans.className}>
-        <CustomThemeProvider>{children}</CustomThemeProvider>
+        <CustomApolloProvider>
+          <CustomThemeProvider>{children}</CustomThemeProvider>
+        </CustomApolloProvider>
       </body>
     </html>
   );
