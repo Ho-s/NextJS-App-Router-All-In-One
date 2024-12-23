@@ -5,7 +5,7 @@ import { afterAll, describe } from '@jest/globals';
 
 import { customRender } from '~/libs/customRender';
 
-import * as stories from './page.stories';
+import * as stories from './Cars.stories';
 
 const { Primary: PrimaryTest } = composeStories(stories);
 
@@ -13,8 +13,8 @@ afterAll(() => {
   cleanup();
 });
 
-describe('CarsPage Test', () => {
-  it('Do CarsPage test', async () => {
+describe('Cars Test', () => {
+  it('Do Cars test', async () => {
     await PrimaryTest.load();
 
     customRender(<PrimaryTest />);
