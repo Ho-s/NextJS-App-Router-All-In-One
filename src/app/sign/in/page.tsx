@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from 'react';
 
+import { setCookie } from 'cookies-next/client';
 import { useRouter } from 'next/navigation';
 
 import SignInPageUI from './page-ui';
@@ -18,7 +19,7 @@ const SignInpage = () => {
       return alert('Please fill in all fields');
     }
 
-    sessionStorage.setItem('isLoggedIn', 'true');
+    setCookie('token', 'some-token');
     router.push('/');
   };
 
