@@ -1,9 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { Car } from '~/components/Cars';
 import { API_HOST } from '~/constants/apiRelated';
-
-import { Car } from '../page';
 
 export const dynamic = 'force-dynamic';
 
