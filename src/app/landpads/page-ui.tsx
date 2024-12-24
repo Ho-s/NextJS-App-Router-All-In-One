@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import { PostLoadingStyled, PostPageStyled } from './styled';
+import { LandpadsLoadingStyled, LandpadsPageStyled } from './styled';
 
 export interface Landpad {
   attempted_landings: string | null;
@@ -16,16 +16,16 @@ export interface Landpad {
   wikipedia: string;
 }
 
-interface PostUIPageProps {
+interface LandpadsUIPageProps {
   data: Landpad[] | undefined;
   loading: boolean;
 }
 
-const PostUIPage = ({ data, loading }: PostUIPageProps) => {
-  if (loading) return <PostLoadingStyled>loading</PostLoadingStyled>;
+const LandpadsUIPage = ({ data, loading }: LandpadsUIPageProps) => {
+  if (loading) return <LandpadsLoadingStyled>loading</LandpadsLoadingStyled>;
 
   return (
-    <PostPageStyled>
+    <LandpadsPageStyled>
       {data?.map(v => (
         <div key={v.id}>
           <h1>{v.full_name}</h1>
@@ -34,8 +34,8 @@ const PostUIPage = ({ data, loading }: PostUIPageProps) => {
           <Link href={v.wikipedia}>{v.wikipedia}</Link>
         </div>
       ))}
-    </PostPageStyled>
+    </LandpadsPageStyled>
   );
 };
 
-export default PostUIPage;
+export default LandpadsUIPage;

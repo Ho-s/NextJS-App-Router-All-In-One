@@ -4,9 +4,9 @@ import { useQuery } from '@apollo/client';
 
 import { GET_LANDPADS } from '~/graphql/query/landpad';
 
-import PostUIPage, { Landpad } from './page-ui';
+import LandpadsUIPage, { Landpad } from './page-ui';
 
-const PostPage = () => {
+const LandpadsPage = () => {
   const { data, loading } = useQuery<
     { landpads: Landpad[] },
     { options: { paginate: { page: number; limit: number } } }
@@ -14,7 +14,7 @@ const PostPage = () => {
     variables: { options: { paginate: { page: 1, limit: 10 } } },
   });
 
-  return <PostUIPage data={data?.landpads} loading={loading} />;
+  return <LandpadsUIPage data={data?.landpads} loading={loading} />;
 };
 
-export default PostPage;
+export default LandpadsPage;

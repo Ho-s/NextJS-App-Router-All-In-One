@@ -4,15 +4,14 @@ import { useQuery } from '@apollo/client';
 
 import { GET_LANDPADS } from '~/graphql/query/landpad';
 
-import PostPage from './page';
-import PostUIPage from './page-ui';
+import LandPadsPage from './page';
 
 jest.mock('@apollo/client', () => ({
   useQuery: jest.fn(),
   gql: jest.fn(),
 }));
 
-describe('PostPage', () => {
+describe('LandPadsPage', () => {
   it('should call useQuery with correct variables', () => {
     const response = {
       data: {
@@ -35,7 +34,7 @@ describe('PostPage', () => {
 
     (useQuery as jest.Mock).mockReturnValue(response);
 
-    render(<PostPage />);
+    render(<LandPadsPage />);
 
     expect(useQuery).toHaveBeenCalledWith(
       GET_LANDPADS,

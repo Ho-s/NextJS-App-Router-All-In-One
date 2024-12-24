@@ -29,8 +29,8 @@ export default function Home() {
           <Link href={'/cars'}>
             <Button>Go to cars page(REST-API)</Button>
           </Link>
-          <Link href={'/post'}>
-            <Button>Go to post page(GRAPHQL)</Button>
+          <Link href={'/landpads'}>
+            <Button>Go to landpads page(GRAPHQL)</Button>
           </Link>
           <Button
             onClick={() => {

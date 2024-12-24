@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 
-import PostUIPage from './page-ui';
+import LandpadsUIPage from './page-ui';
 
-describe('PostUIPage', () => {
+describe('LandpadsUIPage', () => {
   it('should display loading indicator when loading is true', () => {
-    render(<PostUIPage data={undefined} loading={true} />);
+    render(<LandpadsUIPage data={undefined} loading={true} />);
 
     expect(screen.getByText('loading')).toBeInTheDocument();
   });
@@ -24,7 +24,7 @@ describe('PostUIPage', () => {
       },
     ];
 
-    render(<PostUIPage data={data} loading={false} />);
+    render(<LandpadsUIPage data={data} loading={false} />);
 
     expect(screen.getByText('Landing Pad 1')).toBeInTheDocument();
     expect(screen.getByText('Landing site details')).toBeInTheDocument();
