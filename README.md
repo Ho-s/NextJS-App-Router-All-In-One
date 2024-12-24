@@ -1,6 +1,6 @@
-# NextJS-App-Router-All-In-One
+# NextJS15-GraphQL-Boilerplate
 
-`Next15 + App router` boilerplate
+`Next15 + GraphQL` boilerplate
 
 ## How to use
 
@@ -65,6 +65,16 @@ $ yarn g
 
 [You can check detail here](./.github/workflows/pull-request-build-check.yml)
 
+### GraphQL
+
+#### Apollo client with [experimental-nextjs-app-support](https://www.npmjs.com/package/@apollo/experimental-nextjs-app-support)
+
+You can see client apollo provider [here](./src/providers/CustomApolloProvider.tsx)
+
+YOu can see server apollo client [here](./src/graphql/apolloServerClient.ts)
+
+#### Graphql upload with [apollo-upload-client](apollo-upload-client)
+
 ### Folder Structure
 
 ```bash
@@ -82,6 +92,7 @@ $ yarn g
 │   ├── assets # Static assets like images, fonts, etc.
 │   ├── components # Reusable React components
 │   ├── constant # Constants used throughout the application
+│   ├── graphql # Graphql related files like apollo client
 │   ├── hooks # Custom React hooks
 │   ├── libs # Library files and utilities
 │   ├── provider # Context providers for global state management
@@ -112,4 +123,4 @@ $ yarn g
 - [x] Jest(with server component)
 - [x] Storybook(with server component)
 - [x] Generator
-- [ ] GraphQL
+- [x] GraphQL
