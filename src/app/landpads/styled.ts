@@ -6,4 +6,8 @@ export const LandpadsPageStyled = styled.div`
   .status {
     color: red;
   }
+
+  a {
+    color: inherit;
+  }
 `;

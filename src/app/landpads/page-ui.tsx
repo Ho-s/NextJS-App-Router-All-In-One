@@ -27,12 +27,19 @@ const LandpadsUIPage = ({ data, loading }: LandpadsUIPageProps) => {
   return (
     <LandpadsPageStyled>
       {data?.map(v => (
-        <div key={v.id}>
+        <Link key={v.id} href={`/landpads/${v.id}`}>
           <h1>{v.full_name}</h1>
           <p>{v.details}</p>
           <p className="status">{v.status}</p>
-          <Link href={v.wikipedia}>{v.wikipedia}</Link>
-        </div>
+          <p
+            onClick={e => {
+              e.preventDefault();
+              window.open(v.wikipedia);
+            }}
+          >
+            {v.wikipedia}
+          </p>
+        </Link>
       ))}
     </LandpadsPageStyled>
   );
