@@ -6,12 +6,14 @@ import {
   ApolloClient,
   ApolloNextAppProvider,
   InMemoryCache,
+  SSRMultipartLink,
 } from '@apollo/experimental-nextjs-app-support';
 import { getCookie } from 'cookies-next/client';
 
-import { ApolloLink, HttpLink } from '@apollo/client';
+import { ApolloLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
+import createUploadLink from 'apollo-upload-client/createUploadLink.mjs';
 
 const endpoint = 'https://spacex-production.up.railway.app/';
 
@@ -32,7 +34,7 @@ const makeClient = () => {
     };
   });
 
-  const httpLink = new HttpLink({
+  const httpLink = createUploadLink({
     uri: endpoint,
   });
 
@@ -49,7 +51,15 @@ const makeClient = () => {
 
   return new ApolloClient({
     cache: new InMemoryCache(),
-    link: linkList,
+    link:
+      typeof window === 'undefined'
+        ? ApolloLink.from([
+            new SSRMultipartLink({
+              stripDefer: true,
+            }),
+            linkList,
+          ])
+        : linkList,
   });
 };
 
