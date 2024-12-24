@@ -13,11 +13,11 @@ import { ApolloLink, HttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
 
+const endpoint = 'https://spacex-production.up.railway.app/';
+
 const defaultHeader = {
   'Content-Type': 'application/json',
 };
-
-const endpoint = 'https://graphqlzero.almansi.me/api';
 
 const makeClient = () => {
   const authLink = setContext(async (_, { headers }) => {
