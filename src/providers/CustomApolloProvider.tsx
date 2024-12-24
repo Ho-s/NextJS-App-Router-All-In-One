@@ -15,7 +15,7 @@ import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
 import createUploadLink from 'apollo-upload-client/createUploadLink.mjs';
 
-const endpoint = 'https://spacex-production.up.railway.app/';
+import { GRAPHQL_ENDPOINT } from '~/constants/apiRelated';
 
 const defaultHeader = {
   'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ const makeClient = () => {
   });
 
   const httpLink = createUploadLink({
-    uri: endpoint,
+    uri: GRAPHQL_ENDPOINT,
   });
 
   const errorLink = onError(({ graphQLErrors }) => {
