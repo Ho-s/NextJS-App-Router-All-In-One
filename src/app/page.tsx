@@ -27,7 +27,10 @@ export default function Home() {
       {isLoggedIn ? (
         <>
           <Link href={'/cars'}>
-            <Button>Go to cars page</Button>
+            <Button>Go to cars page(REST-API)</Button>
+          </Link>
+          <Link href={'/post'}>
+            <Button>Go to post page(GRAPHQL)</Button>
           </Link>
           <Button
             onClick={() => {
