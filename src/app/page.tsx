@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
+import { deleteCookie, getCookie } from 'cookies-next/client';
 import Link from 'next/link';
 
 import Button from '~/components/Button';
@@ -14,9 +15,9 @@ export default function Home() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const sessionLogin = sessionStorage.getItem('isLoggedIn');
+    const token = getCookie('token');
 
-    if (sessionLogin !== 'true') return;
+    if (!token) return;
 
     setIsLoggedIn(true);
   }, []);
@@ -26,11 +27,14 @@ export default function Home() {
       {isLoggedIn ? (
         <>
           <Link href={'/cars'}>
-            <Button>Go to cars page</Button>
+            <Button>Go to cars page(REST-API)</Button>
+          </Link>
+          <Link href={'/landpads'}>
+            <Button>Go to landpads page(GRAPHQL)</Button>
           </Link>
           <Button
             onClick={() => {
-              sessionStorage.setItem('isLoggedIn', 'false');
+              deleteCookie('token');
               setIsLoggedIn(false);
             }}
           >

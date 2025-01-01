@@ -1,11 +1,16 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 
+import { setCookie } from 'cookies-next/client';
 import { useRouter } from 'next/navigation';
 
 import SignInpage from './page';
 
 jest.mock('next/navigation', () => ({
   useRouter: jest.fn(),
+}));
+
+jest.mock('cookies-next/client', () => ({
+  setCookie: jest.fn(),
 }));
 
 describe('SignInPage', () => {
@@ -21,7 +26,7 @@ describe('SignInPage', () => {
     fireEvent.change(screen.getByPlaceholderText('Password'), { target: { value: 'test' } });
     fireEvent.click(screen.getByRole('button'));
 
-    expect(sessionStorage.getItem('isLoggedIn')).toBe('true');
+    expect(setCookie).toHaveBeenCalledWith('token', 'some-token');
 
     expect(mockPush).toHaveBeenCalledWith('/');
   });
